@@ -1,6 +1,7 @@
 import { Box, Button, DataGrid, Grid, Typography } from '@drincs/react-components';
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { TFunction } from 'i18next';
+import { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 import MegaIcon from '../Icon/MegaIcon';
 

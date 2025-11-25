@@ -3,6 +3,7 @@ import Box from '@mui/joy/Box';
 import CardActions from '@mui/joy/CardActions';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Divider from '@mui/joy/Divider';
+import { JSX } from 'react';
 import DRSheet from '../../components/DRSheet';
 
 type Iprops = {
