@@ -12,7 +12,6 @@ import * as locales from '@mui/x-data-grid/locales';
 import { useQueryClient } from '@tanstack/react-query';
 import { TFunction } from 'i18next';
 import * as React from 'react';
-import { FlagIcon, FlagIconCode } from 'react-flag-kit';
 import { useTranslation } from 'react-i18next';
 import { ProjectsEnum } from '../enum/ProjectsEnum';
 import { GitHubTranslationRelease, TargetLanguages, TranslationResultItem } from '../model/Translation/TranslationResult';
@@ -35,12 +34,6 @@ function columns(t: TFunction<[string]>): GridColDef<TranslationResultItem>[] {
                         alignItems="center"
                         spacing={{ xs: 0, sm: 2, md: 2 }}
                     >
-                        <Grid sx={{ display: { xs: 'flex', md: 'none' } }} >
-                            <FlagIcon code={params.value?.twoLettersCode.toUpperCase() as FlagIconCode} size={50} height={40} alt={params.value?.name} />
-                        </Grid>
-                        <Grid sx={{ display: { xs: 'none', md: 'flex' } }} >
-                            <FlagIcon code={params.value?.twoLettersCode.toUpperCase() as FlagIconCode} size={65} height={50} alt={params.value?.name} />
-                        </Grid>
                         <Grid>
                             {params.value?.name}
                         </Grid>
