@@ -1,10 +1,6 @@
-import CodeIcon from "@mui/icons-material/Code";
 import ExtensionIcon from "@mui/icons-material/Extension";
-import GamepadIcon from "@mui/icons-material/Gamepad";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LaunchIcon from "@mui/icons-material/Launch";
-import MapIcon from "@mui/icons-material/Map";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
 import {
     AspectRatio,
     Box,
@@ -18,13 +14,12 @@ import {
     Sheet,
     Typography,
 } from "@mui/joy";
-import { SvgIconProps } from "@mui/material";
 
 interface Product {
     title: string;
     description: string;
     image: string;
-    icon: React.ReactElement<SvgIconProps>;
+    icon: string
     link: string;
     tags: string[];
 }
@@ -34,17 +29,17 @@ const products: Product[] = [
         title: "Pixi'VN",
         description:
             "A highly versatile and powerful 2D game engine built on JavaScript/TypeScript and PixiJS. Perfect for creating visual novels and narrative-driven games with modern web technologies.",
-        image: "https://pixivn.pixi-vn.com/logo.webp",
-        icon: <GamepadIcon />,
-        link: "https://pixi-vn.web.app/",
+        image: "https://pixi-vn.web.app/visualnovel.png",
+        icon: "https://pixi-vn.web.app/logo.webp",
+        link: "https://pixi-vn.web.app",
         tags: ["Game Engine", "TypeScript", "PixiJS"],
     },
     {
         title: "Ink Support",
         description:
             "A VS Code extension for Ink scripting language along with seamless integration for Pixi'VN. Write your narrative scripts with full IDE support and compile them directly into your game.",
-        image: "https://raw.githubusercontent.com/pixi-vn/pixi-vn-ink/refs/heads/main/logo.webp",
-        icon: <CodeIcon />,
+        image: "https://github.com/user-attachments/assets/cc17384a-7f2f-4e86-b99a-efbf823269d9",
+        icon: "https://pixi-vn.web.app/ink.svg",
         link: "https://pixi-vn.web.app/ink/ink-pixi-vn.html",
         tags: ["VS Code", "Ink", "Integration"],
     },
@@ -52,8 +47,8 @@ const products: Product[] = [
         title: "NQTR",
         description:
             "Navigation Quest Time Routine - An extension for Pixi'VN adding advanced systems for navigation, quests, time management, and game state handling. Fully customizable and extensible for complex game mechanics.",
-        image: "https://raw.githubusercontent.com/DRincs-Productions/nqtr-pixi-vn/refs/heads/main/logo.webp",
-        icon: <MapIcon />,
+        image: "https://pixi-vn.web.app/pointclick.png",
+        icon: "https://pixi-vn.web.app/nqtr.png",
         link: "https://github.com/DRincs-Productions/nqtr-pixi-vn",
         tags: ["Extension", "Navigation", "Quests"],
     },
@@ -62,7 +57,7 @@ const products: Product[] = [
         description:
             "An adult-oriented visual novel currently in development. Featuring rich storytelling, character development, and mature themes for a unique narrative experience.",
         image: "https://raw.githubusercontent.com/DRincs-Productions/ABFD/main/game/gui/main_menu_background.webp",
-        icon: <MenuBookIcon />,
+        icon: "",
         link: "https://www.patreon.com/nicoz_abfd",
         tags: ["Visual Novel", "NSFW", "In Development"],
     },
@@ -233,7 +228,11 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                         justifyContent: "center",
                     }}
                 >
-                    {product.icon}
+                    <img
+                        src={product.icon}
+                        alt={`${product.title} icon`}
+                        style={{ width: 32, height: 32 }}
+                    />
                 </Box>
             </CardOverflow>
             <CardContent sx={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: 1.5 }}>
