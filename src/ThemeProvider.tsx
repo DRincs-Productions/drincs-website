@@ -60,7 +60,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode; }) {
         <CssVarsProvider
             themeJoy={theme}
             themeMaterial={themeMaterial}
-            defaultMode="light"
+            defaultMode="dark"
         >
             {children}
         </CssVarsProvider>

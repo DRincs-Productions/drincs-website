@@ -52,15 +52,15 @@ const products: Product[] = [
         link: "https://github.com/DRincs-Productions/nqtr-pixi-vn",
         tags: ["Extension", "Navigation", "Quests"],
     },
-    {
-        title: "NSFW Visual Novel",
-        description:
-            "An adult-oriented visual novel currently in development. Featuring rich storytelling, character development, and mature themes for a unique narrative experience.",
-        image: "https://raw.githubusercontent.com/DRincs-Productions/ABFD/main/game/gui/main_menu_background.webp",
-        icon: "",
-        link: "https://www.patreon.com/nicoz_abfd",
-        tags: ["Visual Novel", "NSFW", "In Development"],
-    },
+    // {
+    //     title: "NSFW Visual Novel",
+    //     description:
+    //         "An adult-oriented visual novel currently in development. Featuring rich storytelling, character development, and mature themes for a unique narrative experience.",
+    //     image: "https://raw.githubusercontent.com/DRincs-Productions/ABFD/main/game/gui/main_menu_background.webp",
+    //     icon: "",
+    //     link: "https://www.patreon.com/nicoz_abfd",
+    //     tags: ["Visual Novel", "NSFW", "In Development"],
+    // },
 ];
 
 function Navbar() {
