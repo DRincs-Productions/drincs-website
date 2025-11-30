@@ -1,4 +1,3 @@
-import ExtensionIcon from "@mui/icons-material/Extension";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LaunchIcon from "@mui/icons-material/Launch";
 import {
@@ -14,6 +13,7 @@ import {
     Sheet,
     Typography,
 } from "@mui/joy";
+import Icon from "../assets/icon.png";
 
 interface Product {
     title: string;
@@ -84,7 +84,12 @@ function Navbar() {
             }}
         >
             <Box className="flex items-center gap-3">
-                <ExtensionIcon sx={{ fontSize: 32, color: "primary.300" }} />
+                <Box
+                    component="img"
+                    src={Icon}
+                    alt="DRincs Productions Logo"
+                    sx={{ width: 40, height: 40 }}
+                />
                 <Typography
                     level="h4"
                     sx={{
