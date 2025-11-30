@@ -22,7 +22,7 @@ import Translations from './page/Translations';
 import Wiki from './page/Wiki';
 import { isLoggedIn } from './services/AuthService';
 import { geturlwebapi } from './services/BaseRestService';
-import { ThemeProvider } from './Theme';
+import { ThemeProvider } from './ThemeProvider';
 import { ABFDrepo } from './values/constant';
 
 axios.get(geturlwebapi() + "/discord/awakens").catch((err) => {
