@@ -1,17 +1,13 @@
-import { Button, DataGrid, Grid, IconButton, RoundIconButton, Sheet, Typography, useTheme } from '@drincs/react-components';
+import { Button, Grid, IconButton, Sheet, useTheme } from '@drincs/react-components';
 import CheckIcon from '@mui/icons-material/Check';
 import DownloadIcon from '@mui/icons-material/Download';
-import GTranslateIcon from '@mui/icons-material/GTranslate';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import ReplayIcon from '@mui/icons-material/Replay';
-import { AspectRatio, CircularProgress, Skeleton } from '@mui/joy';
-import { CardActionArea, Collapse } from '@mui/material';
+import { CircularProgress, Skeleton } from '@mui/joy';
 import { Box } from '@mui/system';
-import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import * as locales from '@mui/x-data-grid/locales';
 import { useQueryClient } from '@tanstack/react-query';
 import { TFunction } from 'i18next';
-import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ProjectsEnum } from '../enum/ProjectsEnum';
 import { GitHubTranslationRelease, TargetLanguages, TranslationResultItem } from '../model/Translation/TranslationResult';
@@ -155,10 +151,10 @@ export default function DRTranslationGrid(props: IDRTranslationGridProps) {
         projectId: projectId,
     })
 
-    const [expanded, setExpanded] = React.useState(false);
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
+    // const [expanded, setExpanded] = React.useState(false);
+    // const handleExpandClick = () => {
+    //     setExpanded(!expanded);
+    // };
 
     if (isError) {
         return (
@@ -233,70 +229,70 @@ export default function DRTranslationGrid(props: IDRTranslationGridProps) {
             localeText={
                 getLanguageDataGrid(locales)
             }
-            head={
-                <div>
-                    <Typography marginBottom={2} level="title-lg">{data.name}</Typography>
-                    <Box
-                        sx={{ position: 'absolute', top: '0.875rem', right: '9.5rem' }}
-                    >
-                        <RoundIconButton
-                            ariaLabel={t("info")}
-                            color="neutral"
-                            size="sm"
-                            onClick={handleExpandClick}
-                            variant="outlined"
-                        >
-                            <HelpOutlineIcon />
-                        </RoundIconButton>
-                    </Box>
-                    <Button
-                        color="primary"
-                        fullWidth={false}
-                        disabled={!data.crowdinLink}
-                        onClick={() => {
-                            window.open(data.crowdinLink)
-                        }}
-                        endDecorator={<GTranslateIcon />}
-                        size="sm"
-                        sx={{ position: 'absolute', top: '0.875rem', right: '1.1rem' }}
-                    >
-                        {t("translate")}
-                    </Button>
-                    {data.logo &&
-                        <CardActionArea
-                            onClick={handleExpandClick}
-                            sx={{
-                                maxWidth: 900,
-                                maxHeight: 900,
-                                marginBottom: 2,
-                                borderRadius: 2,
-                            }}
-                        >
-                            <AspectRatio
-                                minHeight={200}
-                                maxHeight={250}
-                                sx={{
-                                    borderRadius: 5,
-                                }}
-                            >
-                                <img
-                                    src={data.logo}
-                                    alt=''
-                                />
-                            </AspectRatio>
-                        </CardActionArea>
-                    }
-                    {data.description &&
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
-                            <Typography
-                            // paragraph
-                            >
-                                <div dangerouslySetInnerHTML={{ __html: data.description }} />
-                            </Typography>
-                        </Collapse>
-                    }
-                </div>
-            }
+        // head={
+        //     <div>
+        //         <Typography marginBottom={2} level="title-lg">{data.name}</Typography>
+        //         <Box
+        //             sx={{ position: 'absolute', top: '0.875rem', right: '9.5rem' }}
+        //         >
+        //             <RoundIconButton
+        //                 ariaLabel={t("info")}
+        //                 color="neutral"
+        //                 size="sm"
+        //                 onClick={handleExpandClick}
+        //                 variant="outlined"
+        //             >
+        //                 <HelpOutlineIcon />
+        //             </RoundIconButton>
+        //         </Box>
+        //         <Button
+        //             color="primary"
+        //             fullWidth={false}
+        //             disabled={!data.crowdinLink}
+        //             onClick={() => {
+        //                 window.open(data.crowdinLink)
+        //             }}
+        //             endDecorator={<GTranslateIcon />}
+        //             size="sm"
+        //             sx={{ position: 'absolute', top: '0.875rem', right: '1.1rem' }}
+        //         >
+        //             {t("translate")}
+        //         </Button>
+        //         {data.logo &&
+        //             <CardActionArea
+        //                 onClick={handleExpandClick}
+        //                 sx={{
+        //                     maxWidth: 900,
+        //                     maxHeight: 900,
+        //                     marginBottom: 2,
+        //                     borderRadius: 2,
+        //                 }}
+        //             >
+        //                 <AspectRatio
+        //                     minHeight={200}
+        //                     maxHeight={250}
+        //                     sx={{
+        //                         borderRadius: 5,
+        //                     }}
+        //                 >
+        //                     <img
+        //                         src={data.logo}
+        //                         alt=''
+        //                     />
+        //                 </AspectRatio>
+        //             </CardActionArea>
+        //         }
+        //         {data.description &&
+        //             <Collapse in={expanded} timeout="auto" unmountOnExit>
+        //                 <Typography
+        //                 // paragraph
+        //                 >
+        //                     <div dangerouslySetInnerHTML={{ __html: data.description }} />
+        //                 </Typography>
+        //             </Collapse>
+        //         }
+        //     </div>
+        // }
         />
     );
 }

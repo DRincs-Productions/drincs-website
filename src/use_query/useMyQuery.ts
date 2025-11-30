@@ -3,7 +3,6 @@ import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 export interface UseMyQueryProps<T> {
 	then?: (data: T) => void;
 	catch?: (err: any) => void;
-	staleTime?: number;
 }
 
 interface IProps<T> extends UseMyQueryProps<T>, UseQueryOptions<T> {

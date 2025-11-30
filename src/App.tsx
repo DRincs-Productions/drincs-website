@@ -22,7 +22,7 @@ import Translations from './page/Translations';
 import Wiki from './page/Wiki';
 import { isLoggedIn } from './services/AuthService';
 import { geturlwebapi } from './services/BaseRestService';
-import { MyTheme } from './Theme';
+import { ThemeProvider } from './Theme';
 import { ABFDrepo } from './values/constant';
 
 axios.get(geturlwebapi() + "/discord/awakens").catch((err) => {
@@ -58,7 +58,7 @@ function App() {
     }, [updateAccount])
 
     return (
-        <MyTheme>
+        <ThemeProvider>
             <BrowserRouter>
                 <QueryClientProvider client={queryClient} >
                     <ReactQueryDevtools initialIsOpen={false} />
@@ -89,7 +89,7 @@ function App() {
                     </RecoilRoot>
                 </QueryClientProvider>
             </BrowserRouter>
-        </MyTheme>
+        </ThemeProvider>
     );
 }
 

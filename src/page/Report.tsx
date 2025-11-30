@@ -1,15 +1,12 @@
-import { useTheme } from '@drincs/react-components';
 import { Grid } from '@mui/joy';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import DRAlert from '../components/DRAlert';
 import ReportGrid, { IReportGridRow } from '../components/Grid/ReportGrid';
-import DiscordIcon from '../components/Icon/DiscordIcon';
 import ABFDBugForm from '../components/ReportForm/ABFDBugForm';
 import DiscordBugForm from '../components/ReportForm/DiscordBugForm';
 import WebSiteBugForm from '../components/ReportForm/WebSiteBugForm';
 import { analyticPageView } from '../utility/Analytics';
-import { ABFDrepo, discordLink, WebSiteRepo } from '../values/constant';
+import { ABFDrepo, WebSiteRepo } from '../values/constant';
 
 function Report() {
     const [openABFDBug, setOpenABFDBug] = useState(false)
@@ -93,7 +90,6 @@ function Report() {
         },
     ];
 
-    const theme = useTheme()
     analyticPageView("Report")
 
     return (
@@ -106,7 +102,7 @@ function Report() {
                 paddingTop={3}
                 paddingBottom={3}
             >
-                <h2>{t("reports")}</h2>
+                {/* <h2>{t("reports")}</h2>
                 <DRAlert
                     startDecorator={< DiscordIcon fill={theme.palette.logo.dicord} />}
                 >
@@ -114,7 +110,7 @@ function Report() {
                         href={discordLink}
                         target={"_blank"} rel="noreferrer"
                     >Discord</a>
-                </DRAlert>
+                </DRAlert> */}
                 <ReportGrid
                     title="A Big Family in Debit"
                     rows={rowsABFD}

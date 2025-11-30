@@ -1,44 +1,68 @@
-import { createPaletteRange, CssVarsProvider, extendTheme } from "@drincs/react-components";
-import { GlobalStyles } from "@mui/joy";
-import "./font.css";
+import { createPaletteRange, createTheme, createThemeMaterial, CssVarsProvider } from '@drincs/react-components';
 
-export function MyTheme(props: { children: React.ReactNode }) {
+const primaryColor = "#004c97"
+const secondaryColor = "#ff6a00"
 
-    const theme = extendTheme({
+// https://mui.com/joy-ui/integrations/material-ui/
+export function ThemeProvider({ children }: { children: React.ReactNode; }) {
+    const theme = createTheme({
+        fontFamily: {
+            display: 'Montserrat', // applies to `h1`–`h4`
+            body: 'Montserrat', // applies to `title-*` and `body-*`
+        },
         colorSchemes: {
             light: {
                 palette: {
-                    logo: {
-                        dicord: "#7289da",
-                        patreon: "#f96854",
-                        patreonDark: "#052d49",
-                    },
-                    gold: createPaletteRange("gold", "#FFD700", "light", "#000000")
+                    primary: createPaletteRange("primary", primaryColor, "light", "#ffffff"),
+                    secondary: createPaletteRange("secondary", secondaryColor, "light", "#000000"),
                 },
             },
             dark: {
                 palette: {
-                    logo: {
-                        dicord: "#7289da",
-                        patreon: "#f96854",
-                        patreonDark: "#052d49",
-                    },
-                    gold: createPaletteRange("gold", "#FFD700", "dark", "#000000")
+                    primary: createPaletteRange("primary", primaryColor, "dark", "#ffffff"),
+                    secondary: createPaletteRange("secondary", secondaryColor, "dark", "#000000"),
                 },
             },
         },
-        fontFamily: {
-            "lilita-one": "Lilita One",
+    })
+
+    const themeMaterial = createThemeMaterial({
+        typography: {
+            fontFamily: [
+                'Montserrat',
+            ].join(','),
         },
-    });
+        colorSchemes: {
+            light: {
+                palette: {
+                    primary: {
+                        main: primaryColor,
+                    },
+                    secondary: {
+                        main: secondaryColor,
+                    }
+                },
+            },
+            dark: {
+                palette: {
+                    primary: {
+                        main: primaryColor,
+                    },
+                    secondary: {
+                        main: secondaryColor,
+                    }
+                },
+            },
+        },
+    })
 
     return (
         <CssVarsProvider
-            defaultMode="dark"
             themeJoy={theme}
+            themeMaterial={themeMaterial}
+            defaultMode="light"
         >
-            <GlobalStyles styles={{ h1: { color: 'white' }, h2: { color: 'white' }, body: { backgroundColor: '#6c4b73', } }} />
-            {props.children}
+            {children}
         </CssVarsProvider>
     );
 }

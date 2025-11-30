@@ -1,5 +1,5 @@
-import { Box, Button, DataGrid, Grid, Typography } from '@drincs/react-components';
-import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import { Box, Button, Grid } from '@drincs/react-components';
+import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { TFunction } from 'i18next';
 import { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -109,7 +109,7 @@ interface IDownloadGridProps {
 
 export default function DownloadGrid(props: IDownloadGridProps) {
     const { t } = useTranslation(["translation"]);
-    const { title, rows: data, height } = props;
+    const { rows: data } = props;
 
     return (
         <DataGrid
@@ -118,15 +118,10 @@ export default function DownloadGrid(props: IDownloadGridProps) {
                 maxWidth: { xs: 450, sm: 450, md: 850, lg: 900 },
                 marginTop: 2,
             }}
-            head={<Typography
-                marginBottom={2}
-                level="title-lg">{title}</Typography>}
             rows={data}
             rowHeight={75}
             columns={columns(t)}
-            height={height}
             hideFooter
-            elevation='lg'
         />
     );
 }
