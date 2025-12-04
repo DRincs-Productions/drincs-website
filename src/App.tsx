@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import './App.css';
-import DRNavbar, { IPageDRNavbar } from './components/DRNavbar';
 import MarkdownPage from './components/MarkdownPage';
 import HomeFunctionContext, { HomeFunctionContextModel } from './contexts/HomeFunctionContext';
 import { useI18n } from './i18n';
@@ -18,14 +17,13 @@ import MyProfile from './page/MyProfile/MyProfile';
 import MyProfileEdit from './page/MyProfile/MyProfileEdit';
 import MyProfileEditPassword from './page/MyProfile/MyProfileEditPassword';
 import Report from './page/Report';
-import SignInSide from './page/SignInSide';
 import Support from './page/Support';
 import Translations from './page/Translations';
 import Wiki from './page/Wiki';
 import { isLoggedIn } from './services/AuthService';
 import { geturlwebapi } from './services/BaseRestService';
-import { MyTheme } from './Theme';
-import { ABFDrepo, discordLink, gitHubLink } from './values/constant';
+import { ThemeProvider } from './ThemeProvider';
+import { ABFDrepo } from './values/constant';
 
 axios.get(geturlwebapi() + "/discord/awakens").catch((err) => {
 })
@@ -36,19 +34,11 @@ function App() {
     const routes = [
         { title: t("about"), path: "/", element: <About /> },
         { title: "⬇️" + t("download"), path: "/download", element: <Download /> },
-        // { title: "🗞️news", path: "/news", element: <News /> },
         { title: "🌍" + t("translations"), path: "/translations", element: <Translations /> },
         { title: "📖" + t("wiki"), path: "/wiki", element: <Wiki routeLink="wiki" urlRepo={ABFDrepo} /> },
         { title: "🐞" + t("bug/requests"), path: "/report", element: <Report /> },
     ];
-    const extern_link: IPageDRNavbar[] = [
-        { title: "🔗Discord", path: discordLink },
-        {
-            title: "🔗GitHub", path: gitHubLink
-        },
-    ];
     const supportRoute = { title: t("support_us"), path: "/support", element: <Support /> }
-    const [openLogin, setOpenLogin] = useState(false);
     const queryClient = new QueryClient()
     const [isLogged, setIsLogged] = useState<boolean>(false)
     const [updateAccount, setUpdateAccount] = useState<number>(0)
@@ -68,24 +58,13 @@ function App() {
     }, [updateAccount])
 
     return (
-        <MyTheme>
+        <ThemeProvider>
             <BrowserRouter>
                 <QueryClientProvider client={queryClient} >
                     <ReactQueryDevtools initialIsOpen={false} />
                     <RecoilRoot>
                         <SnackbarProvider maxSnack={3}>
                             <HomeFunctionContext.Provider value={new HomeFunctionContextModel(updateAccountFunction, isLogged)}>
-                                <DRNavbar
-                                    pages={routes}
-                                    supportPage={supportRoute}
-                                    openLogin={() => { setOpenLogin(true) }}
-                                    extern_link={extern_link}
-                                />
-
-                                <SignInSide
-                                    open={openLogin}
-                                    onClose={() => { setOpenLogin(false) }}
-                                />
                                 <Routes>
                                     {(routes).map((route) => (
                                         <Route key={route.title} path={route.path} element={route.element} />
@@ -93,8 +72,6 @@ function App() {
                                     <Route key={supportRoute.title} path={supportRoute.path} element={supportRoute.element} />
                                     <Route key="howtotranslate" path="/howtotranslate" element={<MarkdownPage markdownLink={`https://raw.githubusercontent.com/wiki/${ABFDrepo}/how-to-translate.md`} />} />
                                     <Route key="daz-assert" path="/daz-assert" element={<Wiki routeLink="daz-assert" urlRepo={`DRincs-Productions/daz-assert-ABFD-all-in-one`} />} />
-                                    <Route key="drincs" path="/drincs" element={<About />} />
-                                    <Route key="a-big-family-in-debit" path="/a-big-family-in-debit" element={<About />} />
                                     <Route key="discord-connect" path="discord-connect" element={<ConnectionDiscordSteps status="loading" type="connection" />} />
                                     <Route key="discord-login" path="discord-login" element={<ConnectionDiscordSteps status="loading" type="login" />} />
                                     <Route key="discord-connect-error" path="discord-connect-error" element={<ConnectionDiscordSteps status="error" />} />
@@ -112,7 +89,7 @@ function App() {
                     </RecoilRoot>
                 </QueryClientProvider>
             </BrowserRouter>
-        </MyTheme>
+        </ThemeProvider>
     );
 }
 

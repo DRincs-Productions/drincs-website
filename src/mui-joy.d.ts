@@ -1,20 +1,11 @@
-import { PaletteRange } from "@drincs/react-components";
-import "./font.css";
+import { PaletteRange } from "@caleffispa/joy-react-components";
 
+// https://mui.com/joy-ui/customization/theme-colors/
 declare module '@mui/joy/styles' {
     interface Palette {
-        logo: {
-            dicord: string;
-            patreon: string;
-            patreonDark: string;
-        }
-        gold: PaletteRange
-    }
-
-    interface FontFamily {
-        "lilita-one": string
+        secondary: PaletteRange;
     }
     interface ColorPalettePropOverrides {
-        'gold': true
+        'secondary': true
     }
 }

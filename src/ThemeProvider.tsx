@@ -1,0 +1,71 @@
+import { createPaletteRange, createTheme, createThemeMaterial, CssVarsProvider } from '@drincs/react-components';
+
+const primaryColor = "#C25300"
+const secondaryColor = "#6B2AC0"
+
+// export a simple brand gradient helper for reuse (no breaking change)
+export const brandGradient = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`
+
+// https://mui.com/joy-ui/integrations/material-ui/
+export function ThemeProvider({ children }: { children: React.ReactNode; }) {
+    const theme = createTheme({
+        fontFamily: {
+            display: 'Montserrat', // applies to `h1`–`h4`
+            body: 'Montserrat', // applies to `title-*` and `body-*`
+        },
+        colorSchemes: {
+            light: {
+                palette: {
+                    primary: createPaletteRange("primary", primaryColor, "light", "#ffffff"),
+                    secondary: createPaletteRange("secondary", secondaryColor, "light", "#000000"),
+                },
+            },
+            dark: {
+                palette: {
+                    primary: createPaletteRange("primary", primaryColor, "dark", "#ffffff"),
+                    secondary: createPaletteRange("secondary", secondaryColor, "dark", "#000000"),
+                },
+            },
+        },
+    })
+
+    const themeMaterial = createThemeMaterial({
+        typography: {
+            fontFamily: [
+                'Montserrat',
+            ].join(','),
+        },
+        colorSchemes: {
+            light: {
+                palette: {
+                    primary: {
+                        main: primaryColor,
+                    },
+                    secondary: {
+                        main: secondaryColor,
+                    }
+                },
+            },
+            dark: {
+                palette: {
+                    primary: {
+                        main: primaryColor,
+                    },
+                    secondary: {
+                        main: secondaryColor,
+                    }
+                },
+            },
+        },
+    })
+
+    return (
+        <CssVarsProvider
+            themeJoy={theme}
+            themeMaterial={themeMaterial}
+            defaultMode="dark"
+        >
+            {children}
+        </CssVarsProvider>
+    );
+}
